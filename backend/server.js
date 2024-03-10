@@ -25,6 +25,11 @@ const corsOption = {
 app.use(express.json());
 app.use(cors(corsOption));
 
+// routes 
+const sensorDataRoute = require('./routes/sensorData.route');
+
+app.use('/api/sensorData', sensorDataRoute);
+
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
 });
@@ -39,3 +44,7 @@ app.use((err, req, res, next) => {
         message: errorMessage
     });
 });
+
+app.get("/", (req, res) => {
+    res.status(200).json({ message: "test" });
+})
