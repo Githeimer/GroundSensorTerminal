@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 
-export default function SurfaceLevel() {
-    const level = 0; // cm
+export default function SurfaceLevel({levelValue}) {
+    const groundLevel=79.22;
+    const level= Math.abs(groundLevel - levelValue).toFixed(2); // cm, always positive
+
     const [currentTime, setCurrentTime] = useState("");
 
     useEffect(() => {
@@ -55,7 +57,7 @@ export default function SurfaceLevel() {
                 </div>
 
                 <div className="data">
-                    <h1>{level}</h1>
+                    <h1>{level} cm</h1>
                     <p style={{ color }}>
                         {status}
                     </p>

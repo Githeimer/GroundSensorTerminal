@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-export default function Humidity() {
+export default function Humidity({humiValue}) {
     const humi = 80;
     const [currentTime, setCurrentTime] = useState("");
 
@@ -22,12 +22,12 @@ export default function Humidity() {
                 </div>
 
                 <div className="data">
-                    <h1>{humi}</h1>
+                    <h1>{humiValue}%</h1>
                     <p>humid</p>
                 </div>
 
                 <div className="graph">
-                    <p>WE WILL PLACE GRAPH HERE</p>
+                    <a href="#">Graph</a>
                 </div>
             </div>
         </>
