@@ -1,14 +1,34 @@
 import SurfaceLevel from "../components/surfaceLevel";
+import { useState, useEffect } from "react";
 
-export default function SurfaceSafety()
-{
+export default function SurfaceSafety() {
+    const [distanceValue, setDistanceValue] = useState(null);
 
-    
-    return(
+    async function fetchData() {
+        try {
+            const dataResponse = await fetch('https://backend.flap.esainnovation.com/api/sensorData/getData');
+            const jsonData = await dataResponse.json();
+            console.log(jsonData);
+            setDistanceValue(jsonData.distance);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    }
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            fetchData();
+        }, 1000); // Fetch data every second
+
+        // Clear interval on component unmount
+        return () => clearInterval(interval);
+    }, []); // Empty dependency array means effect runs only once on mount
+
+    return (
         <>
-        <div className="container">
-        <SurfaceLevel></SurfaceLevel>
-        <div className="data-container">
+            <div className="container">
+                <SurfaceLevel levelValue={distanceValue} />
+                <div className="data-container">
                     <table>
                         <thead>
                             <tr>
@@ -56,9 +76,7 @@ export default function SurfaceSafety()
                         </tbody>
                     </table>
                 </div>
-        </div>
-        
+            </div>
         </>
     )
-
 }

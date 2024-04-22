@@ -25,10 +25,10 @@ export default function Humidity({humiValue}) {
                     <h1>{humiValue}%</h1>
                     <p>humid</p>
                 </div>
-
+{/* 
                 <div className="graph">
                     <a href="#">Graph</a>
-                </div>
+                </div> */}
             </div>
         </>
     );

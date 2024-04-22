@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 export default function Temperature({ tempValue }) {
     const [currentTime, setCurrentTime] = useState(new Date().toLocaleTimeString());
 
-    useEffect(() => {
+    useEffect(()  => {
         const timeInterval = setInterval(() => {
             setCurrentTime(new Date().toLocaleTimeString());
         }, 1000);
@@ -24,9 +24,9 @@ export default function Temperature({ tempValue }) {
                 <h1>{tempValue !== null ? `${tempValue} °C` : 'Loading...'}</h1>
                 <p>Mild</p>
             </div>
-            <div className="graph">
+            {/* <div className="graph">
                 <a href="#">Graph</a>
-            </div>                
+            </div>                 */}
         </div>
     );
 }
